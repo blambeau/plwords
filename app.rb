@@ -2,11 +2,12 @@ require 'sinatra'
 require 'sequel'
 require 'thread'
 
-LOCK = Mutex.new
-DB   = Sequel.connect(ENV['DATABASE_URL'])
+LOCK  = Mutex.new
+DB    = Sequel.connect(ENV['DATABASE_URL'])
+INDEX = File.expand_path('../public/index.html', __FILE__)
 
 get '/' do
-  "Hello from Programming Language Words"
+  send_file INDEX
 end
 
 get '/status' do
@@ -16,12 +17,12 @@ get '/status' do
 end
 
 post '/words' do
-  if lang=params['language'] and words=params['words']
-    LOCK.synchronize do
-      DB[:words].insert(language: lang, words: words, submission_ip: request.ip)
-      201
-    end
-  else
-    400
+  halt(400, 'language') unless lang=params['language']
+  halt(400, 'language') if lang.empty? or lang.size>50
+  halt(400, 'words')    unless words=params['words']
+  halt(400, 'words')    if words.empty? or words.size>500
+  LOCK.synchronize do
+    DB[:words].insert(language: lang, words: words, submission_ip: request.ip)
+    201
   end
 end

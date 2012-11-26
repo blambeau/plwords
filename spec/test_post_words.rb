@@ -28,9 +28,35 @@ describe "POST /words" do
 
       post '/words', language: "java"
       last_response.status.should eq(400)
+      last_response.body.should eq("words")
 
       post '/words', words: "enterprise"
       last_response.status.should eq(400)
+      last_response.body.should eq("language")
+    end
+
+    it 'detects empty language' do
+      post '/words', language: "", words: "blah"
+      last_response.status.should eq(400)
+      last_response.body.should eq("language")
+    end
+
+    it 'detects empty words' do
+      post '/words', language: "ruby", words: ""
+      last_response.status.should eq(400)
+      last_response.body.should eq("words")
+    end
+
+    it 'detects empty language too long' do
+      post '/words', language: "A"*1000, words: "blah"
+      last_response.status.should eq(400)
+      last_response.body.should eq("language")
+    end
+
+    it 'detects empty words too long' do
+      post '/words', language: "ruby", words: "A"*1000
+      last_response.status.should eq(400)
+      last_response.body.should eq("words")
     end
   end
 
