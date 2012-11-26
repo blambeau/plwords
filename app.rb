@@ -6,7 +6,7 @@ LOCK = Mutex.new
 DB   = Sequel.connect(ENV['DATABASE_URL'])
 
 get '/' do
-  "Hello from Programming Language Words"
+  "Hello from Programming Language Words: #{ENV['HEROKU_POSTGRESQL_ROSE_URL']}"
 end
 
 get '/status' do
