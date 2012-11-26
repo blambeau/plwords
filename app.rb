@@ -3,7 +3,7 @@ require 'sequel'
 require 'thread'
 
 LOCK = Mutex.new
-DB   = Sequel.connect(ENV['DATABASE_URL'])
+#DB   = Sequel.connect(ENV['DATABASE_URL'])
 
 get '/' do
   status 200
