@@ -6,9 +6,7 @@ LOCK = Mutex.new
 DB   = Sequel.connect(ENV['DATABASE_URL'])
 
 get '/' do
-  status 200
-  content_type "text/plain"
-  "Database: #{ENV['DATABASE_URL']}"
+  "Hello from Programming Language Words"
 end
 
 get '/status' do
