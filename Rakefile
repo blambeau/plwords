@@ -9,5 +9,6 @@ rescue LoadError
 end
 
 task "db:migrate" do
+  puts "Using #{ENV['DATABASE_URL']}"
   system "sequel -E -m database #{ENV['DATABASE_URL']}"
 end
