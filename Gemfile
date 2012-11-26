@@ -2,6 +2,7 @@ source :rubygems
 
 gem "sequel"
 gem "sinatra"
+gem "pg"
 
 group :development do
   gem "rspec"
