@@ -1,4 +1,5 @@
 ENV['RACK_ENV'] = "test"
+ENV['DATABASE_URL'] = "sqlite://plwords.db"
 
 $:.unshift File.dirname(File.dirname(__FILE__))
 require 'app'

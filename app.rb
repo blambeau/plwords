@@ -3,15 +3,18 @@ require 'sequel'
 require 'thread'
 
 LOCK = Mutex.new
+DB   = Sequel.connect(ENV['DATABASE_URL'])
 
-configure :test do
-  set :db, Sequel.connect("sqlite://plwords.db")
+get '/status' do
+  status 200
+  content_type "text/plain"
+  DB[:words].count.to_s
 end
 
 post '/words' do
   if lang=params['language'] and words=params['words']
     LOCK.synchronize do
-      settings.db[:words].insert(language: lang, words: words, submission_ip: request.ip)
+      DB[:words].insert(language: lang, words: words, submission_ip: request.ip)
       201
     end
   else
