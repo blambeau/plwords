@@ -1,3 +1,5 @@
+ENV['DATABASE_URL'] = ENV['HEROKU_POSTGRESQL_ROSE_URL'] unless ENV['DATABASE_URL']
+
 begin
   require "rspec/core/rake_task"
   RSpec::Core::RakeTask.new do |spec|

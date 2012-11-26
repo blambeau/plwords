@@ -7,7 +7,10 @@ $(document).ready(function(){
           url: '/words',
           data: $("#wordsForm").serialize(),
           success: function(){
-              $("form").html("<h1>Thank you!!</h1>");
+              var text = "<h1>Thank you very much!</h1>";
+                  text = text + "<p>Submit another programming language <a href='/'>here</a></p>"
+                  text = text + "<p>We'll keep your informed on this web site and on hacker news!</p>"
+              $("form").html(text);
           },
           statusCode: {
               400: function(data){
