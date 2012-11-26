@@ -1,9 +1,9 @@
+ENV['RACK_ENV'] = "test"
+
 $:.unshift File.dirname(File.dirname(__FILE__))
 require 'app'
 require 'rspec'
 require 'rack/test'
-
-set :environment, :test
 
 module Helpers
 
