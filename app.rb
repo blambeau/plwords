@@ -8,7 +8,7 @@ LOCK = Mutex.new
 get '/' do
   status 200
   content_type "text/plain"
-  ENV['DATABASE_URL']
+  "Coucou #{ENV['DATABASE_URL']}"
 end
 
 get '/status' do
