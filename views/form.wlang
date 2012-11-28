@@ -1,0 +1,22 @@
+<form id="wordsForm" class="container">
+  <div>
+    <p style="font-style: italic; font-size: 16px;">Is there, for every programming language, a reasonably small tag cloud that describes it faithfully?
+       Are those tag clouds agreed by programming language practitionners? Does a given tag cloud uniquely determine the underlying programming language?</p>
+  </div>
+  <div>
+    <h3>Cite one programming language</h3>
+    <p>Submit multiple times for different languages.</p>
+    <input type="text" id="languageInput" name="language" class="span6" maxlength="50">
+  </div>
+  <div>
+    <h3>What words describe it best?</h3>
+    <p>About 5 to 25 words (or short sentences), one per line, most relevant first.</p>
+    <p>Think to special features &amp; paradigms (functional, object-oriented, etc.), typical application domains,
+       development philosophy, etc.</p>
+    <p>More than a few second before finding the next word? It is probably time to submit!</p>
+    <textarea class="span6" id="wordsInput" name="words" rows="15" maxlength="500"></textarea>
+  </div>
+  <div id="feedback">
+    <button id="submitButton" type="submit" class="btn btn-primary btn-large">Submit &raquo;</button>
+  </div>
+</form>

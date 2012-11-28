@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'wlang'
 require 'sequel'
 
 use Alf::Rest do |cfg|
@@ -7,7 +8,7 @@ end
 include Alf::Rest::Helpers
 
 get '/' do
-  send_file INDEX
+  wlang :form
 end
 
 get '/status' do
