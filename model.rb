@@ -1,7 +1,3 @@
-require 'alf'
-require 'alf-sequel'
-require 'alf-rest'
-
 module Model
   include Alf::Viewpoint
   include Functions

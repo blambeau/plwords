@@ -1,6 +1,6 @@
+require './configuration'
 require 'sinatra'
 require 'wlang'
-require 'sequel'
 require './functions'
 require './model'
 
