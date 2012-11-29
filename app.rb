@@ -10,31 +10,28 @@ use Alf::Rest do |cfg|
   cfg.connection_options = {default_viewpoint: Model}
 end
 
+def languages
+  @langs ||= relvar{ languages }.to_a(order: [[:name, :asc]])
+end
+
 get '/' do
-  langs = relvar{
-    languages
-  }.to_a(order: [[:name, :asc]])
-  wlang :contribute, locals: { languages: langs }
+  wlang :contribute, locals: { languages: languages }
 end
 
 get '/clouds' do
-  langs = relvar{
-    languages
-  }.to_a(order: [[:language, :asc]])
-  wlang :clouds, locals: { languages: langs, language: langs[rand(langs.size)][:language] }
+  wlang :clouds, locals: { languages: languages,
+                            language: languages[rand(langs.size)][:language] }
 end
 
 get '/clouds/:language' do
-  langs = relvar{
-    languages
-  }.to_a(order: [[:name, :asc]])
-  wlang :clouds, locals: { languages: langs, language: params[:language] }
+  wlang :clouds, locals: { languages: languages,
+                            language: params[:language] }
 end
 
 get '/cloud/:language' do
   content_type :json
   lang = params[:language]
-  x = relvar{
+  relvar{
     project(
       ungroup(
         restrict(wordcloud_by_language, language: lang),
