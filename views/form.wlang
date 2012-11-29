@@ -60,7 +60,7 @@
         return false;
     });
     $('#noThanksButton, #cloudsButton').click(function(){
-      window.location = "/clouds/" + $("#languageInput").attr("value");
+      window.location = "/clouds/" + encodeURIComponent($("#languageInput").attr("value"));
       return false;
     });
     $('#contributeButton').click(function(){

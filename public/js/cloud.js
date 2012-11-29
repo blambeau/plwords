@@ -1,7 +1,7 @@
 function switchLang(lang){
     $(".switchLang").removeClass("active");
     $("a[href='" + lang + "']").parent().addClass("active");
-    $.get('/cloud/' + lang, function(data){
+    $.get('/cloud/' + encodeURIComponent(lang), function(data){
         installTableHistogram(data);
         installCloud(data);
     });
