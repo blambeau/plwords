@@ -8,15 +8,10 @@ module Model
 
   native :submissions
 
-  def submission_words
+  def submission_histograms
     s = self
-    ungroup(
-      allbut(
-        extend(
-          project(submissions, [:submission_id, :language, :feeling]),
-          language: ->{ s.normalize_language(language) },
-          words:    ->{ s.feeling2words(feeling)       }),
-        [:feeling]),
-      :words)
+    extend(
+      submissions,
+      histogram: ->{ s.histogram(feeling) })
   end
 end
