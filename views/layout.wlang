@@ -31,6 +31,19 @@
         >{navbar}
         <div class="container">
           +{yield}
+          <div id="footer">
+            <p class="muted credit">
+              This site is powered by
+              <a href="http://www.sinatrarb.com/">sinatra</a>,
+              <a href="https://github.com/blambeau/alf">alf</a>,
+              <a href="http://sequel.rubyforge.org/">sequel</a>,
+              <a href="https://github.com/blambeau/wlang">wlang</a>,
+              <a href="http://d3js.org/">d3</a>,
+              <a href="https://github.com/jasondavies/d3-cloud">d3-cloud</a>,
+              <a href="https://github.com/janl/mustache.js/">mustache.js</a>
+              and hosted on <a href="http://www.heroku.com/">heroku</a>.
+            </p>
+          </div>
         </div>
         <script type="text/javascript">
           var _gaq = _gaq || [];

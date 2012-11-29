@@ -12,3 +12,7 @@ h2{
 #histogram .explain{
   margin-top: 60px;
 }
+#footer{
+  padding-top: 10px;
+  border-top: 1px solid #AAAAAA;
+}
