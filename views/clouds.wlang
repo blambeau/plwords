@@ -9,9 +9,14 @@
       </ul>
     </div>
   </div>
-  <div id="cloud" class="span8">
+  <div id="cloud" class="span7">
   </div>
-  <div id="histogram" class="span2">
+  <div id="histogram" class="span3">
+    <div class="explain">
+      <p>Is there, for every programming language, a reasonably small tag cloud that describes it faithfully?</p>
+      <p>Are those tag clouds agreed by programming language practitionners?</p>
+      <p>Does a given tag cloud uniquely determine the underlying programming language?</p>
+    </div>
   </div>
 </div>
 
@@ -19,10 +24,9 @@
 <script>
   $(document).ready(function(){
     $(".switchLang a").click(function(e){
-      var lang = $(e.target).attr("href");
       $(".switchLang").removeClass("active");
       $(e.target).parent().addClass("active");
-      switchLang(lang);
+      switchLang($(e.target).attr("href"));
       return false;
     });
   });

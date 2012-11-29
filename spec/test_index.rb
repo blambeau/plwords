@@ -11,7 +11,7 @@ describe "GET /" do
   end
 
   it 'displays the form' do
-    last_response.body.should =~ /<form/ 
+    last_response.body.should =~ /\<form/
   end
 
 end

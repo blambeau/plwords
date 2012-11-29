@@ -1,6 +1,14 @@
+h2{
+  font-size: 20px;
+}
 #histogram {
-  font-size: 12px;
+  font-size: 16px;
+  font-style: italic;
 }
 #histogram table tr td{
+  font-size: 12px;
   padding: 0px 3px;
+}
+#histogram .explain{
+  margin-top: 60px;
 }

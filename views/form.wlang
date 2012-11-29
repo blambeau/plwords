@@ -1,53 +1,71 @@
 <form id="submissionForm">
   <div>
-    <p style="font-style: italic; font-size: 16px;">Is there, for every programming language, a reasonably small tag cloud that describes it faithfully?
-       Are those tag clouds agreed by programming language practitionners? Does a given tag cloud uniquely determine the underlying programming language?</p>
-  </div>
-  <div>
-    <h3>Cite one programming language</h3>
-    <p>Submit multiple times for different languages.</p>
+    <h2>Cite one programming language</h2>
+    <p>In the menu, in parenthesis is the number of submissions for the language so far.</p>
+    <p>You may submit multiple times for different languages.</p>
     <input type="text" id="languageInput" name="language" class="span6" maxlength="50">
   </div>
   <div>
-    <h3>What words describe it best?</h3>
+    <h2>What words describe it best?</h2>
     <p>About 5 to 25 tags (words or short sentences), one per line, most relevant first.</p>
-    <p>Think to special features &amp; paradigms (functional, object-oriented, etc.), typical application domains,
-       development philosophy, etc.</p>
+    <p>Think to typical application domains, special features, paradigms, development philosophies, etc.</p>
     <p>More than a few second before finding the next word? It is probably time to submit!</p>
     <textarea class="span6" id="feelingInput" name="feeling" rows="15" maxlength="500"></textarea>
   </div>
-  <div id="feedback">
-    <button id="submitButton" type="submit" class="btn btn-primary btn-large">Submit &raquo;</button>
+  <div>
+    <button id="submitButton" type="submit" class="btn btn-primary">Contribute &raquo;</button>
+    <button id="noThanksButton" class="btn btn-danger">No thanks!</button>
   </div>
-  <script>
-    $(document).ready(function(){
-      $('#submitButton').click(function(){
-          $("#languageInput").css("border", "solid 1px #AAAAAA");
-          $("#feelingInput").css("border", "solid 1px #AAAAAA");
-          $.ajax({
-              type: 'POST',
-              url: '/submissions',
-              data: $("#submissionForm").serialize(),
-              success: function(){
-                  var text = "<h1>Thank you very much!</h1>";
-                      text = text + "<p>Submit another programming language <a href='/'>here</a></p>"
-                      text = text + "<p>We'll keep your informed on this web site and on hacker news!</p>"
-                  $("form").html(text);
-              },
-              statusCode: {
-                  400: function(data){
-                      $("#" + data.responseText + "Input").css("border","solid 2px #FF0000");
-                      $("#" + data.responseText + "Input").focus();
-                      return false;
-                  },
-                  500: function(){
-                      $("#feedback").html("Sorry an error occured, please try again later!");
-                      return false;
-                  }
-              }
-          });
-          return false;
-      });
-    });
-  </script>
 </form>
+
+<div id="thankYouModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3 id="myModalLabel">Thank you!</h3>
+  </div>
+  <div class="modal-body">
+    <p>Your contribution is much appreciated!</p>
+    <p>Consider submitting another entry, or access the tag clouds now...</p>
+  </div>
+  <div class="modal-footer">
+    <button id="contributeButton" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">&laquo; Contribute</button>
+    <button id="cloudsButton" class="btn btn-danger">Clouds &raquo;</button>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('#submitButton').click(function(){
+        $("#languageInput").css("border", "solid 1px #AAAAAA");
+        $("#feelingInput").css("border", "solid 1px #AAAAAA");
+        $.ajax({
+            type: 'POST',
+            url: '/submissions',
+            data: $("#submissionForm").serialize(),
+            success: function(){
+              $("#thankYouModal").modal('show');
+            },
+            statusCode: {
+                400: function(data){
+                    $("#" + data.responseText + "Input").css("border","solid 2px #FF0000");
+                    $("#" + data.responseText + "Input").focus();
+                    return false;
+                },
+                500: function(){
+                    $("#feedback").html("Sorry an error occured, please try again later!");
+                    return false;
+                }
+            }
+        });
+        return false;
+    });
+    $('#noThanksButton, #cloudsButton').click(function(){
+      window.location = "/clouds";
+      return false;
+    });
+    $('#contributeButton').click(function(){
+      window.location = "/";
+      return false;
+    });
+  });
+</script>

@@ -1,0 +1,35 @@
+<div class="row">
+  <div id="selector" class="span2">
+    <div class="well sidebar-nav">
+      <ul class="nav nav-list">
+        <li class="nav-header">Languages</li>
+        *{languages}{
+        <li class="switchLang"><a href="${language}">${language} (${submission_count})</a></li>
+        }
+      </ul>
+      <script>
+        $(function(){
+          $(".switchLang a").click(function(e){
+            $("#languageInput").attr("value", $(e.target).attr("href"));
+            return false;
+          });
+        });
+      </script>
+    </div>
+  </div>
+  <div id="cloud" class="span7">
+    <h1>Stop!</h1>
+    <p>The whole experiment probably works better if contributions are made by people not already
+       influenced by the available clouds. Please take a few seconds contributing your own feeling
+       before visualizing them! If possible, please refrain yourself from trying to 'correct'
+       available clouds afterwards... Thank you!</p>
+    >{form}
+  </div>
+  <div id="histogram" class="span3">
+    <div class="explain">
+      <p>Is there, for every programming language, a reasonably small tag cloud that describes it faithfully?</p>
+      <p>Are those tag clouds agreed by programming language practitionners?</p>
+      <p>Does a given tag cloud uniquely determine the underlying programming language?</p>
+    </div>
+  </div>
+</div>

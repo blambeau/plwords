@@ -28,6 +28,7 @@
         <script src="/js/vendor/d3.v2.min.js"></script>
         <script src="/js/vendor/d3.layout.cloud.js"></script>
         <script src="/js/vendor/mustache.js"></script>
+        >{navbar}
         <div class="container">
           +{yield}
         </div>
