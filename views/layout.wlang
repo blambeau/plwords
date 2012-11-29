@@ -28,7 +28,9 @@
         <script src="/js/vendor/d3.v2.min.js"></script>
         <script src="/js/vendor/d3.layout.cloud.js"></script>
         <script src="/js/main.js"></script>
-        +{yield}
+        <div class="container">
+          +{yield}
+        </div>
         <script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-7025210-3']);

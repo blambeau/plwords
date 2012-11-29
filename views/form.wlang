@@ -1,4 +1,4 @@
-<form id="submissionForm" class="container">
+<form id="submissionForm">
   <div>
     <p style="font-style: italic; font-size: 16px;">Is there, for every programming language, a reasonably small tag cloud that describes it faithfully?
        Are those tag clouds agreed by programming language practitionners? Does a given tag cloud uniquely determine the underlying programming language?</p>
