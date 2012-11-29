@@ -1,1 +1,3 @@
 bin
+database/*.db
+.bundle
