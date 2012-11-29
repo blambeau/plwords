@@ -8,10 +8,18 @@ module Model
 
   native :submissions
 
-  def submission_histograms
+  def wordcloud_by_language
     s = self
-    extend(
-      submissions,
-      histogram: ->{ s.histogram(feeling) })
+    allbut(
+      extend(
+        summarize(
+          extend(
+            submissions,
+            language: ->{ language.downcase }),
+          [:language],
+          feeling: concat(between: "\n"){ feeling }),
+          submission_count: count(),
+        histogram: ->{ s.histogram(feeling) }),
+      [:feeling])
   end
 end

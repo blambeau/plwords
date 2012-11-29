@@ -1,13 +1,5 @@
 module Functions
 
-  def normalize_language(lang)
-    lang.downcase
-  end
-
-  def feeling2words(feeling)
-    Relation(word: feeling.split(/\W+/).map(&:downcase))
-  end
-
   def histogram(text)
     histo = text.split(/\W+/)
                 .map(&:downcase)
