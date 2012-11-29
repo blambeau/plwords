@@ -17,8 +17,8 @@ module Model
             submissions,
             language: ->{ language.downcase }),
           [:language],
-          feeling: concat(between: "\n"){ feeling }),
-          submission_count: count(),
+          feeling: concat(between: "\n"){ feeling },
+          submission_count: count()),
         histogram: ->{ s.histogram(feeling) }),
       [:feeling])
   end
