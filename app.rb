@@ -1,12 +1,12 @@
 require 'sinatra'
 require 'wlang'
 require 'sequel'
-require 'alf'
-require 'alf-sequel'
-require 'alf-rest'
+require './functions'
+require './model'
 
 use Alf::Rest do |cfg|
   cfg.database = Alf.database(ENV['DATABASE_URL'])
+  cfg.connection_options = {default_viewpoint: Model}
 end
 include Alf::Rest::Helpers
 

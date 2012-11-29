@@ -1,4 +1,4 @@
-{submission_id: 1, language: "ruby",   tags: "Metaprogramming\r\nDynamic\r\nDeveloper of Hapiness", submission_time: Time.parse('2012-11-26T12:59:03+01:00'), submission_ip: "81.244.120.211"}
-{submission_id: 2, language: "Ruby",   tags: "dynamic\r\nprogramming\r\nagile\r\nfun",              submission_time: Time.parse('2012-11-27T12:59:03+01:00'), submission_ip: "81.244.120.212"}
-{submission_id: 3, language: "Java",   tags: "enterprise\r\nstatic\r\nfun\r\nobject-oriented",      submission_time: Time.parse('2012-11-26T15:17:42+01:00'), submission_ip: "81.244.120.211"}
-{submission_id: 4, language: "Python", tags: "dynamic\r\nobject-oriented",                          submission_time: Time.parse('2012-11-27T12:11:41+01:00'), submission_ip: "81.244.120.211"}
+{submission_id: 1, language: "ruby",   feeling: "Metaprogramming\r\nDynamic\r\nDeveloper of Hapiness", submission_time: Time.parse('2012-11-26T12:59:03+01:00'), submission_ip: "81.244.120.211"}
+{submission_id: 2, language: "Ruby",   feeling: "dynamic\r\nprogramming\r\nagile\r\nfun",              submission_time: Time.parse('2012-11-27T12:59:03+01:00'), submission_ip: "81.244.120.212"}
+{submission_id: 3, language: "Java",   feeling: "enterprise\r\nstatic\r\nfun\r\nobject-oriented",      submission_time: Time.parse('2012-11-26T15:17:42+01:00'), submission_ip: "81.244.120.211"}
+{submission_id: 4, language: "Python", feeling: "dynamic\r\nobject-oriented",                          submission_time: Time.parse('2012-11-27T12:11:41+01:00'), submission_ip: "81.244.120.211"}

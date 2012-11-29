@@ -12,6 +12,14 @@ module Helpers
     Sinatra::Application
   end
 
+  def test_seed_path
+    Path.dir/"../database/seed/test"
+  end
+
+  def test_seed_db
+    Alf.connect(test_seed_path, default_viewpoint: Model)
+  end
+
 end
 
 RSpec.configure do |spec|
