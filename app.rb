@@ -30,17 +30,21 @@ post '/submissions' do
   201
 end
 
-get '/cloud/:language' do
-  lang = params[:language]
+get '/cloud' do
   langs = relvar{
     languages
-  }.to_a([[:name, :asc]])
-  histogram = relvar{
+  }.to_a(order: [[:name, :asc]])
+  wlang :cloud, locals: { languages: langs }
+end
+
+get '/cloud/:language' do
+  content_type :json
+  lang = params[:language]
+  x = relvar{
     project(
       ungroup(
         restrict(wordcloud_by_language, language: lang),
         :histogram),
       [:word, :frequency])
-  }.to_a([[:frequency, :desc], [:word, :asc]])
-  wlang :cloud, locals: { histogram: histogram, languages: langs }
+  }.to_json(order: [[:frequency, :desc], [:word, :asc]])
 end
