@@ -18,9 +18,9 @@ get '/' do
   wlang :contribute, locals: { languages: languages }
 end
 
-get '/clouds' do
+get %r{/clouds/?} do
   wlang :clouds, locals: { languages: languages,
-                            language: languages[rand(langs.size)][:language] }
+                            language: languages[rand(languages.size)][:language] }
 end
 
 get '/clouds/:language' do
