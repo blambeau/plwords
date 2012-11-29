@@ -3,9 +3,9 @@
     <div class="well sidebar-nav">
       <ul class="nav nav-list">
         <li class="nav-header">Languages</li>
-      *{languages}{
+        *{languages}{
         <li class="switchLang"><a href="${language}">${language} (${submission_count})</a></li>
-      }
+        }
       </ul>
     </div>
   </div>
@@ -24,10 +24,9 @@
 <script>
   $(document).ready(function(){
     $(".switchLang a").click(function(e){
-      $(".switchLang").removeClass("active");
-      $(e.target).parent().addClass("active");
       switchLang($(e.target).attr("href"));
       return false;
     });
+    switchLang('+{language}');
   });
 </script>

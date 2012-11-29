@@ -20,8 +20,15 @@ end
 get '/clouds' do
   langs = relvar{
     languages
+  }.to_a(order: [[:language, :asc]])
+  wlang :clouds, locals: { languages: langs, language: langs[rand(langs.size)][:language] }
+end
+
+get '/clouds/:language' do
+  langs = relvar{
+    languages
   }.to_a(order: [[:name, :asc]])
-  wlang :clouds, locals: { languages: langs }
+  wlang :clouds, locals: { languages: langs, language: params[:language] }
 end
 
 get '/cloud/:language' do
