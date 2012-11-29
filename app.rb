@@ -1,14 +1,14 @@
 require './configuration'
 require 'sinatra'
 require 'wlang'
-require './functions'
-require './model'
+
+include Configuration
+include Alf::Rest::Helpers
 
 use Alf::Rest do |cfg|
-  cfg.database = Alf.database(ENV['DATABASE_URL'])
+  cfg.database = Alf.database(database_url)
   cfg.connection_options = {default_viewpoint: Model}
 end
-include Alf::Rest::Helpers
 
 get '/' do
   wlang :form
