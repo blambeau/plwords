@@ -29,3 +29,18 @@ post '/submissions' do
   relvar(:submissions).insert(language: lang, feeling: feeling, submission_ip: request.ip)
   201
 end
+
+get '/cloud/:language' do
+  lang = params[:language]
+  langs = relvar{
+    languages
+  }.to_a([[:name, :asc]])
+  histogram = relvar{
+    project(
+      ungroup(
+        restrict(wordcloud_by_language, language: lang),
+        :histogram),
+      [:word, :frequency])
+  }.to_a([[:frequency, :desc], [:word, :asc]])
+  wlang :cloud, locals: { histogram: histogram, languages: langs }
+end
