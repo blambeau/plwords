@@ -8,8 +8,9 @@ require 'logger'
 include Alf::Rest::Helpers
 
 configure do
-  set :database_url, ENV['DATABASE_URL']
-  set :recaptcha,    ENV['RECAPTCHA_PRIVATE']
+  set :database_url,      ENV['DATABASE_URL']
+  set :recaptcha_private, ENV['RECAPTCHA_PRIVATE']
+  set :recaptcha_public,  ENV['RECAPTCHA_PUBLIC']
   set :logger,       development? ? Logger.new(STDOUT) : nil
   set :sequel_db,    Sequel.connect(settings.database_url, loggers: [ settings.logger ].compact)
 end
@@ -24,7 +25,7 @@ def scope
 end
 
 get '/' do
-  wlang :contribute, locals: scope
+  wlang :contribute, locals: scope.merge(recaptcha: settings.recaptcha_public)
 end
 
 get %r{^/clouds(/(.+))?} do |_,language|
@@ -47,7 +48,7 @@ post '/submissions' do
   errors << 'feeling'  if feeling.empty? or feeling.size>500
   unless settings.test?
     check = RestClient.post "http://www.google.com/recaptcha/api/verify",
-      { 'privatekey' => settings.recaptcha,
+      { 'privatekey' => settings.recaptcha_private,
         'remoteip'   => request.ip,
         'challenge'  => params['recaptcha_challenge_field'],
         'response'   => params['recaptcha_response_field'] }
