@@ -30,14 +30,11 @@ end
 
 get '/cloud/:language' do
   content_type :json
-  lang = params[:language]
-  relvar{
-    project(
-      ungroup(
-        restrict(wordcloud_by_language, language: lang),
-        :histogram),
-      [:word, :frequency])
-  }.to_json(order: [[:frequency, :desc], [:word, :asc]])
+  relvar(:wordcloud_by_language)
+    .restrict(language: params[:language])
+    .ungroup(:histogram)
+    .project([:word, :frequency])
+    .to_json(order: [[:frequency, :desc], [:word, :asc]])
 end
 
 post '/submissions' do
