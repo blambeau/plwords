@@ -33,15 +33,19 @@
           +{yield}
           <div id="footer">
             <p class="muted credit">
-              This site is powered by
+              &copy; 2012 Bernard Lambeau. This site is powered by
+              <a href="http://www.ruby-lang.org/">ruby</a>,
               <a href="http://www.sinatrarb.com/">sinatra</a>,
               <a href="https://github.com/blambeau/alf">alf</a>,
               <a href="http://sequel.rubyforge.org/">sequel</a>,
-              <a href="https://github.com/blambeau/wlang">wlang</a>,
+              <a href="https://github.com/blambeau/wlang">wlang</a>
+              and <a href="http://www.postgresql.org/">postgresql</a> server-side,
+              <a href="http://jquery.com/">jquery</a>,
               <a href="http://d3js.org/">d3</a>,
               <a href="https://github.com/jasondavies/d3-cloud">d3-cloud</a>,
-              <a href="https://github.com/janl/mustache.js/">mustache.js</a>
-              and hosted on <a href="http://www.heroku.com/">heroku</a>.
+              <a href="http://twitter.github.com/bootstrap/">bootstrap</a>,
+              <a href="https://github.com/janl/mustache.js/">mustache.js</a> client-side;
+              it is hosted on <a href="http://www.heroku.com/">heroku</a>.
             </p>
           </div>
         </div>
