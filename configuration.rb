@@ -1,9 +1,9 @@
 require 'sequel'
+require 'path'
 require 'alf'
 require 'alf-sequel'
 require 'alf-rest'
 
-require './functions'
 require './model'
 
 module Configuration

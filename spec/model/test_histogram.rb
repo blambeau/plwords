@@ -1,8 +1,8 @@
 require 'spec_helper'
-describe Functions, "histogram" do
-  include Functions
+describe Model, "histogram" do
+  include Model
 
-  it 'works as epected' do
+  it 'works as expected' do
     expected = Relation([
       {word: "enterprise", frequency: 2},
       {word: "typed", frequency: 1},
