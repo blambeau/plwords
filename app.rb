@@ -3,17 +3,20 @@ require './model'
 require 'sinatra'
 require 'rest_client'
 require 'wlang'
+require 'logger'
 
 include Alf::Rest::Helpers
 
 configure do
   set :database_url, ENV['DATABASE_URL']
   set :recaptcha,    ENV['RECAPTCHA_PRIVATE']
+  set :logger,       development? ? Logger.new(STDOUT) : nil
+  set :sequel_db,    Sequel.connect(settings.database_url, loggers: [ settings.logger ].compact)
 end
 
 use Alf::Rest do |cfg|
-  cfg.database = Alf.database(settings.database_url)
-  cfg.connection_options = {default_viewpoint: Model}
+  cfg.database  = Alf.database(settings.sequel_db)
+  cfg.connection_options = { default_viewpoint: Model }
 end
 
 def scope
