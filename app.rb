@@ -1,13 +1,18 @@
-require './configuration'
+require './config'
+require './model'
 require 'sinatra'
 require 'rest_client'
 require 'wlang'
 
-include Configuration
 include Alf::Rest::Helpers
 
+configure do
+  set :database_url, ENV['DATABASE_URL']
+  set :recaptcha,    ENV['RECAPTCHA_PRIVATE']
+end
+
 use Alf::Rest do |cfg|
-  cfg.database = Alf.database(database_url)
+  cfg.database = Alf.database(settings.database_url)
   cfg.connection_options = {default_viewpoint: Model}
 end
 
@@ -39,7 +44,7 @@ post '/submissions' do
   errors << 'feeling'  if feeling.empty? or feeling.size>500
   unless settings.test?
     check = RestClient.post "http://www.google.com/recaptcha/api/verify",
-      { 'privatekey' => '6Lf1x9kSAAAAABgcLX5rCTorU_Ols02NWfFrlvo9',
+      { 'privatekey' => settings.recaptcha,
         'remoteip'   => request.ip,
         'challenge'  => params['recaptcha_challenge_field'],
         'response'   => params['recaptcha_response_field'] }

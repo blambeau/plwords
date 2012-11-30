@@ -1,5 +1,12 @@
-require './configuration'
-include Configuration
+require './app'
+
+def database_url
+  ENV['DATABASE_URL']
+end
+
+def seed_url
+  Path.dir/'database/seed'/ENV['RACK_ENV']
+end
 
 begin
   require "rspec/core/rake_task"
@@ -11,15 +18,24 @@ begin
 rescue LoadError
 end
 
-task "db:show" do
-  puts "Using: #{database_url}"
+desc "Ping the database"
+task "db:ping" do
+  Alf.connect(database_url){|c| puts "Ping #{database_url} ok!" }
 end
 
-task "db:migrate" => "db:show" do
+desc "Migrate the database"
+task "db:migrate" => "db:ping" do
   system "sequel -E -m database #{database_url}"
 end
 
-task "db:seed" => "db:show" do
+task "db:show" => "db:ping"
+task "db:show", :which do |t, args|
+  Alf.connect(database_url, default_viewpoint: Model) do |db|
+    puts db.relvar(args[:which]).to_text
+  end
+end
+
+task "db:seed" => "db:ping" do
   Alf.connect(seed_url) do |seed|
     Alf.connect(database_url) do |db|
       seed_url.glob('*.rash').each do |file|
@@ -28,13 +44,5 @@ task "db:seed" => "db:show" do
         db.relvar(relvarname).affect(seed.query(relvarname))
       end
     end
-  end
-end
-
-task "db:print" => "db:show"
-task "db:print", :which do |t, args|
-  Alf.connect(database_url, default_viewpoint: Model) do |db|
-    puts db.relvar(args[:which].to_sym)
-           .to_text(order: [[:submission_count, :asc], [:frequency, :asc]])
   end
 end
