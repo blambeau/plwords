@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: git://github.com/alf-tool/alf-rest
-  revision: 110131b4dc87d866efdcd9ef565ac98b368144a4
+  revision: 9da76589cca0ebfb2d19f9bb9290f3aebd1aadbd
   specs:
     alf-rest (0.1.0)
       alf (~> 0.13.0)

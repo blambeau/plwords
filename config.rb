@@ -1,9 +1,3 @@
-require 'sequel'
-require 'path'
-require 'alf'
-require 'alf-sequel'
-require 'alf-rest'
-
 # default environment to development
 ENV['RACK_ENV'] ||= 'development'
 

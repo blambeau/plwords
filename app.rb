@@ -1,23 +1,24 @@
-require './config'
-require './model'
+require 'sequel'
+require 'path'
+require 'alf'
+require 'alf-sequel'
+require 'alf-rest'
 require 'sinatra'
+require 'sinatra/alf-rest'
 require 'rest_client'
 require 'wlang'
 require 'logger'
-
-include Alf::Rest::Helpers
+require './config'
+require './model'
 
 configure do
-  set :database_url,      ENV['DATABASE_URL']
   set :recaptcha_private, ENV['RECAPTCHA_PRIVATE']
   set :recaptcha_public,  ENV['RECAPTCHA_PUBLIC']
-  set :logger,       development? ? Logger.new(STDOUT) : nil
-  set :sequel_db,    Sequel.connect(settings.database_url, loggers: [ settings.logger ].compact)
-end
-
-use Alf::Rest do |cfg|
-  cfg.database  = Alf.database(settings.sequel_db)
-  cfg.connection_options = { default_viewpoint: Model }
+  set :logger, development? ? Logger.new(STDOUT) : nil
+  alf_rest do |cfg|
+    cfg.database  = Sequel.connect(ENV['DATABASE_URL'], loggers: [ settings.logger ].compact)
+    cfg.viewpoint = Model
+  end
 end
 
 def scope
