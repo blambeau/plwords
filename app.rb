@@ -41,11 +41,9 @@ get '/cloud/:language' do
 end
 
 post '/submissions' do
-  halt(400, 'language') unless lang=params['language']
-  halt(400, 'language') if lang.empty? or lang.size>50
-  halt(400, 'feeling')  unless feeling=params['feeling']
+  lang, feeling = params.values_at('language', 'feeling').map{|x| x || '' }.map(&:strip)
+  halt(400, 'language') if lang.empty?    or lang.size>50
   halt(400, 'feeling')  if feeling.empty? or feeling.size>500
-  lang, feeling = lang.strip, feeling.strip
   relvar(:submissions).insert(language: lang, feeling: feeling, submission_ip: request.ip)
   201
 end
