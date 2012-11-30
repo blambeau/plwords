@@ -41,10 +41,8 @@ GEM
     awesome_print (1.1.0)
     backports (2.6.5)
     citrus (2.4.1)
-    daemons (1.1.9)
     diff-lcs (1.1.3)
     domain (1.0.0.rc4)
-    eventmachine (1.0.0)
     mime-types (1.19)
     myrrha (3.0.0.rc7)
       domain (~> 1.0.0.rc3)
@@ -71,10 +69,6 @@ GEM
     sexpr (0.5.1)
     sqlite3 (1.3.6)
     temple (0.4.1)
-    thin (1.5.0)
-      daemons (>= 1.0.9)
-      eventmachine (>= 0.12.6)
-      rack (>= 1.0.0)
     tilt (1.3.3)
     wlang (2.1.1)
       backports (~> 2.6)
@@ -99,5 +93,4 @@ DEPENDENCIES
   sequel
   sinatra!
   sqlite3
-  thin
   wlang (~> 2.1.1)
