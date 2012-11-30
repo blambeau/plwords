@@ -19,12 +19,8 @@ get '/' do
   wlang :contribute, locals: scope
 end
 
-get /^\/clouds\/?$/ do
-  wlang :clouds, locals: scope
-end
-
-get '/clouds/:language' do
-  wlang :clouds, locals: scope.merge(language: params[:language])
+get %r{^/clouds(/(.+))?} do |_,language|
+  wlang :clouds, locals: scope.merge(language: language)
 end
 
 get '/cloud/:language' do
