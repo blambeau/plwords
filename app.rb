@@ -31,7 +31,7 @@ end
 get '/cloud/:language' do
   content_type :json
   relvar(:wordcloud_by_language)
-    .restrict(language: params[:language])
+    .restrict(language: params[:language].downcase)
     .ungroup(:histogram)
     .project([:word, :frequency])
     .to_json(order: [[:frequency, :desc], [:word, :asc]])
@@ -52,7 +52,7 @@ post '/submissions' do
   end
   if errors.empty?
     relvar(:submissions)
-      .insert(language: lang, feeling: feeling, submission_ip: request.ip)
+      .insert(language: lang.downcase, feeling: feeling, submission_ip: request.ip)
     201
   else
     [ 400, {'Content-Type' => 'application/json'}, errors.to_json ]
