@@ -1,5 +1,6 @@
 require './configuration'
 require 'sinatra'
+require 'rest_client'
 require 'wlang'
 
 include Configuration
@@ -38,9 +39,23 @@ get '/cloud/:language' do
 end
 
 post '/submissions' do
+  errors = []
   lang, feeling = params.values_at('language', 'feeling').map{|x| x || '' }.map(&:strip)
-  halt(400, 'language') if lang.empty?    or lang.size>50
-  halt(400, 'feeling')  if feeling.empty? or feeling.size>500
-  relvar(:submissions).insert(language: lang, feeling: feeling, submission_ip: request.ip)
-  201
+  errors << 'language' if lang.empty?    or lang.size>50
+  errors << 'feeling'  if feeling.empty? or feeling.size>500
+  unless settings.test?
+    check = RestClient.post "http://www.google.com/recaptcha/api/verify",
+      { 'privatekey' => '6Lf1x9kSAAAAABgcLX5rCTorU_Ols02NWfFrlvo9',
+        'remoteip'   => request.ip,
+        'challenge'  => params['recaptcha_challenge_field'],
+        'response'   => params['recaptcha_response_field'] }
+    errors << 'recaptcha' unless check =~ /\Atrue/
+  end
+  if errors.empty?
+    relvar(:submissions)
+      .insert(language: lang, feeling: feeling, submission_ip: request.ip)
+    201
+  else
+    [ 400, {'Content-Type' => 'application/json'}, errors.to_json ]
+  end
 end

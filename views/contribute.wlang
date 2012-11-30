@@ -23,7 +23,9 @@
        influenced by the available clouds. Please take a few seconds contributing your own feeling
        before visualizing them! If possible, please refrain yourself from trying to 'correct'
        available clouds afterwards... Thank you!</p>
-    >{form}
+    <div class="row">
+      >{form}
+    </div>
   </div>
   <div id="histogram" class="span3">
     <div class="explain">

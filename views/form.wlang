@@ -1,20 +1,34 @@
+<script type="text/javascript">
+ var RecaptchaOptions = { theme : 'clean' };
+</script>
 <form id="submissionForm">
-  <div>
+  <div class="span7">
     <h2>Cite one programming language</h2>
     <p>In the menu, in parenthesis is the number of submissions for the language so far.</p>
     <p>You may submit multiple times for different languages.</p>
     <input type="text" id="languageInput" name="language" class="span6" maxlength="50">
   </div>
-  <div>
+  <div class="span7">
     <h2>What words describe it best?</h2>
     <p>About 5 to 25 tags (words or short sentences), one per line, most relevant first.</p>
     <p>Think to typical application domains, special features, paradigms, development philosophies, etc.</p>
     <p>More than a few second before finding the next word? It is probably time to submit!</p>
     <textarea class="span6" id="feelingInput" name="feeling" rows="15" maxlength="500"></textarea>
   </div>
-  <div>
-    <button id="submitButton" type="submit" class="btn btn-primary">Contribute &raquo;</button>
-    <button id="noThanksButton" class="btn btn-danger">No thanks!</button>
+  <div class="span7 recaptcha">
+    <h2>Are you human?</h2>
+    <div id="recaptchaInput">
+      <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6Lf1x9kSAAAAAK27nfb3Jpam6jchxOK8-jLNlHS4"></script>
+      <noscript>
+         <iframe src="http://www.google.com/recaptcha/api/noscript?k=your_public_key" frameborder="0"></iframe><br>
+         <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+         <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+      </noscript>
+    </div>
+  </div>
+  <div class="span7 buttons">
+    <button id="submitButton" type="submit" class="btn btn-success">Contribute &raquo;</button>
+    <button id="noThanksButton" class="btn btn-danger">No thanks, get the clouds!</button>
   </div>
 </form>
 
@@ -28,44 +42,12 @@
     <p>Consider submitting another entry, or access the tag clouds now...</p>
   </div>
   <div class="modal-footer">
-    <button id="contributeButton" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">&laquo; Contribute</button>
+    <button id="contributeButton" class="btn btn-success" data-dismiss="modal" aria-hidden="true">&laquo; Contribute</button>
     <button id="cloudsButton" class="btn btn-danger">Clouds &raquo;</button>
   </div>
 </div>
 
+<script src="/js/form.js"></script>
 <script>
-  $(document).ready(function(){
-    $('#submitButton').click(function(){
-        $("#languageInput").css("border", "solid 1px #AAAAAA");
-        $("#feelingInput").css("border", "solid 1px #AAAAAA");
-        $.ajax({
-            type: 'POST',
-            url: '/submissions',
-            data: $("#submissionForm").serialize(),
-            success: function(){
-              $("#thankYouModal").modal('show');
-            },
-            statusCode: {
-                400: function(data){
-                    $("#" + data.responseText + "Input").css("border","solid 2px #FF0000");
-                    $("#" + data.responseText + "Input").focus();
-                    return false;
-                },
-                500: function(){
-                    $("#feedback").html("Sorry an error occured, please try again later!");
-                    return false;
-                }
-            }
-        });
-        return false;
-    });
-    $('#noThanksButton, #cloudsButton').click(function(){
-      window.location = "/clouds/" + encodeURIComponent($("#languageInput").attr("value"));
-      return false;
-    });
-    $('#contributeButton').click(function(){
-      window.location = "/";
-      return false;
-    });
-  });
+  $(document).ready(plWordsForm.instrument);
 </script>

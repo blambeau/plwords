@@ -3,6 +3,7 @@ source :rubygems
 gem "sequel"
 gem "pg"
 gem "wlang", "~> 2.1.1"
+gem "rest-client"
 gem "sinatra",    :git => "git://github.com/sinatra/sinatra"
 gem "alf",        :git => "git://github.com/alf-tool/alf"
 gem "alf-sequel", :git => "git://github.com/alf-tool/alf-sequel"
