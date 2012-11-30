@@ -1,4 +1,5 @@
 function switchLang(lang){
+    if (!lang){ lang = $(".switchLang a").attr('href'); }
     $(".switchLang").removeClass("active");
     $("a[href='" + lang + "']").parent().addClass("active");
     $.get('/cloud/' + encodeURIComponent(lang), function(data){

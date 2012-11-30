@@ -27,6 +27,6 @@
       switchLang($(e.target).attr("href"));
       return false;
     });
-    switchLang('+{language}');
+    switchLang(#{language}{'+{language}'});
   });
 </script>

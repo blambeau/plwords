@@ -11,22 +11,20 @@ use Alf::Rest do |cfg|
   cfg.connection_options = {default_viewpoint: Model}
 end
 
-def languages
-  @langs ||= relvar{ languages }.to_a(order: [[:name, :asc]])
+def scope
+  @scope ||= { languages: relvar(:languages).to_a(order: [[:language, :asc]]) }
 end
 
 get '/' do
-  wlang :contribute, locals: { languages: languages }
+  wlang :contribute, locals: scope
 end
 
 get /^\/clouds\/?$/ do
-  wlang :clouds, locals: { languages: languages,
-                            language: languages[rand(languages.size)][:language] }
+  wlang :clouds, locals: scope
 end
 
 get '/clouds/:language' do
-  wlang :clouds, locals: { languages: languages,
-                            language: params[:language] }
+  wlang :clouds, locals: scope.merge(language: params[:language])
 end
 
 get '/cloud/:language' do
