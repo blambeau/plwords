@@ -19,22 +19,12 @@ module Model
       submission_count: count())
   end
 
-  def wordcloud_by_language
+  def words
     s = self
-    group(
-      not_matching(
-        ungroup(
-          allbut(
-            extend(
-              summarize(
-                submissions,
-                [:language],
-              feeling: concat(between: "\n"){ feeling },
-              submission_count: count()),
-            histogram: ->{ s.histogram(feeling) }),
-          [:feeling]),
-        :histogram),
-      banished_words),
-    [:word, :frequency], :histogram)
+    feelings   = summarize(submissions, [:language], feeling: concat(between: "\n"){ feeling })
+    histograms = extend(feelings, histogram: ->{ s.histogram(feeling) })
+    flattened  = ungroup(histograms, :histogram)
+    filtered   = not_matching(flattened, banished_words)
+    filtered
   end
 end
