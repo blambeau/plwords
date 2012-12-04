@@ -34,7 +34,6 @@ get %r{^(/|/languages/?)$} do
                  .to_a(order: [[:language, :asc]]),
     histogram: relvar(:languages)
                  .rename(language: :word, submission_count: :frequency)
-                 .extend(frequency: ->{ frequency/2 })
                  .to_a(order: [[:frequency, :desc], [:word, :asc]]),
     mode:      'language'
   }
