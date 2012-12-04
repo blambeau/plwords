@@ -11,10 +11,22 @@ require 'logger'
 require './config'
 require './model'
 
+HISTOGRAM_ORDERING = [[:frequency, :desc], [:word, :asc]]
+
+class MyHtml < WLang::Html
+
+  def at(buf, href, label)
+    href, label = render(href), render(label)
+    buf << %Q{<a target="_blank" href="#{href}">#{label}</a>}
+  end
+  tag '@', :at
+end
+
 configure do
   set :recaptcha_private, ENV['RECAPTCHA_PRIVATE']
   set :recaptcha_public,  ENV['RECAPTCHA_PUBLIC']
   set :logger, development? ? Logger.new(STDOUT) : nil
+  set :wlang, {dialect: MyHtml}
   alf_rest do |cfg|
     cfg.database  = Sequel.connect(ENV['DATABASE_URL'], loggers: [ settings.logger ].compact)
     cfg.viewpoint = Model
