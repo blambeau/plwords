@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="span8">
+
+    <h1>About</h1>
+    <p>This website has been developed for a talk about <i>ruby</i>. That talk is organized
+    around the words commonly used in the ruby community for describing this awesome
+    programming language. Like a craftsmen, I've built the tools needed for that talk;
+    for collecting and presenting tag clouds in particular.</p>
+
+    <h2>About the implementation</h2>
+    <p>The website and its backend (about 125 LOC) are written in ruby (of course). In my
+       opinion, it is a beautiful example (and an research investigation) of a nice
+       partnership between lightweight web frameworks (@{http://www.sinatrarb.com/}{sinatra}),
+       logic-less templating languages (@{http://mustache.github.com/}{mustache},
+       @{https://github.com/blambeau/wlang}{wlang}) and relational algebra
+       (@{https://github.com/blambeau/alf}{alf}).</p>
+    <p>In particular, the implementation explores an alternative to the use of an OO domain
+       model and ORMs for representing and/or manipulating data.
+       In a way similar to what is described in @{http://shaffner.us/cs/papers/tarpit.pdf}{<i>out of the tar pit</i>},
+       we investigate here the use of <i>relations</i> as first class citizens (backed by
+       a SQL database) and <i>functional programming</i> (a functional flavor of relational
+       algebra) for manipulating them.<p>
+    <p>As an example, tag histograms are computed and summarized from submissions through
+       purely relational expressions, compiled to SQL code (where possible). Resulting
+       relations yield a friendly input for logic-less templates (such as the one used for
+       displaying the histogram table). Converting them to JSON is so straightforward that the
+       javascript library that displays the cloud images can be seen as taking relations as
+       input as well.</p>
+    <p>The source code can be found on @{https://github.com/blambeau/plwords}{github}.
+       Contributions and ideas are much welcome!</p>
+
+    <h2>About the author</h2>
+    I'm Bernard Lambeau, a researcher at the @{http://www.uclouvain.be/}{University of Louvain}.
+    I blog about computer science in general (software engineering and databases in particular) at
+    @{http://www.revision-zero.org/}{revision-zero}. You can also find me on
+    @{https://twitter.com/blambeau}{twitter} and @{https://github.com/blambeau}{github}.
+
+  </div>
+</div>

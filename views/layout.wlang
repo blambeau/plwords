@@ -33,25 +33,24 @@
           +{yield}
           <div id="footer">
             <p class="muted credit">
-              &copy; 2012 Bernard Lambeau. This site is powered by
-              <a href="http://www.ruby-lang.org/">ruby</a>,
-              <a href="http://www.sinatrarb.com/">sinatra</a>,
-              <a href="https://github.com/blambeau/alf">alf</a>,
-              <a href="http://sequel.rubyforge.org/">sequel</a>,
-              <a href="https://github.com/blambeau/wlang">wlang</a>
-              and <a href="http://www.postgresql.org/">postgresql</a> server-side,
-              <a href="http://jquery.com/">jquery</a>,
-              <a href="http://d3js.org/">d3</a>,
-              <a href="https://github.com/jasondavies/d3-cloud">d3-cloud</a>,
-              <a href="http://twitter.github.com/bootstrap/">bootstrap</a>,
-              <a href="https://github.com/janl/mustache.js/">mustache.js</a> client-side;
-              it is hosted on <a href="http://www.heroku.com/">heroku</a>.
+              &copy; 2012
+              <a target="_blank" href="http://www.revision-zero.org/">Bernard Lambeau</a>, 
+              The <a target="_blank" href="http://www.uclouvain.be">University of Louvain</a>. This site is powered by
+              <a target="_blank" href="http://www.ruby-lang.org/">ruby</a>,
+              <a target="_blank" href="http://www.sinatrarb.com/">sinatra</a>,
+              <a target="_blank" href="https://github.com/blambeau/alf">alf</a>,
+              <a target="_blank" href="http://sequel.rubyforge.org/">sequel</a>,
+              <a target="_blank" href="https://github.com/blambeau/wlang">wlang</a>
+              and <a target="_blank" href="http://www.postgresql.org/">postgresql</a> server-side,
+              <a target="_blank" href="http://jquery.com/">jquery</a>,
+              <a target="_blank" href="http://d3js.org/">d3</a>,
+              <a target="_blank" href="https://github.com/jasondavies/d3-cloud">d3-cloud</a>,
+              <a target="_blank" href="http://twitter.github.com/bootstrap/">bootstrap</a>,
+              <a target="_blank" href="https://github.com/janl/mustache.js/">mustache.js</a> client-side;
+              it is hosted on <a target="_blank" href="http://www.heroku.com/">heroku</a>.
             </p>
           </div>
         </div>
-        <a href="https://github.com/blambeau/plwords">
-          <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 10000;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub">
-        </a>
         <script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-7025210-3']);

@@ -7,8 +7,24 @@
         <span class="icon-bar"></span>
       </a>
       <a class="brand" href="/">Programming Language Tag Clouds</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="/clouds">Clouds</a></li>
+          <li><a href="/contribute">Contribute</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+        <div class="navbar-text pull-right">
+          <div style="padding-top: 3px">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="blambeau" data-hashtags="plwords">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <a href="https://github.com/blambeau/plwords">
+    <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 10000;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub">
+  </a>
   <script>
     $(document).ready(function(){
       $("li a[href='+{request.path}']").parent().addClass("active");
