@@ -37,21 +37,24 @@ def scope
   @scope ||= { languages: relvar(:languages).to_a(order: [[:language, :asc]]) }
 end
 
-get '/' do
-  wlang :contribute, locals: scope.merge(recaptcha: settings.recaptcha_public)
+get '/about' do
+  wlang :about
 end
 
-get %r{^/clouds(/(.+))?} do |_,language|
+get %r{^/(clouds(/(.+)|/)?)?$} do |_,_,language|
   wlang :clouds, locals: scope.merge(language: language)
 end
 
 get '/cloud/:language' do
   content_type :json
-  relvar(:wordcloud_by_language)
+  relvar(:words)
     .restrict(language: params[:language].downcase)
-    .ungroup(:histogram)
     .project([:word, :frequency])
-    .to_json(order: [[:frequency, :desc], [:word, :asc]])
+    .to_json(order: HISTOGRAM_ORDERING)
+end
+
+get '/contribute' do
+  wlang :contribute, locals: scope.merge(recaptcha: settings.recaptcha_public)
 end
 
 post '/submissions' do

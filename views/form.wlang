@@ -10,7 +10,7 @@
   </div>
   <div class="span7">
     <h2>What words describe it best?</h2>
-    <p>About 5 to 25 tags (words or short sentences), one per line, most relevant first.</p>
+    <p>About 5 to 25 tags (words or <b>short</b> sentences), <b>one per line</b>.</p>
     <p>Think to typical application domains, special features, paradigms, development philosophies, etc.</p>
     <p>More than a few second before finding the next word? It is probably time to submit!</p>
     <textarea class="span6" id="feelingInput" name="feeling" rows="15" maxlength="500"></textarea>

@@ -10,8 +10,4 @@ describe "GET /" do
     last_response.body.should =~ /Programming Language Word Clouds/ 
   end
 
-  it 'displays the form' do
-    last_response.body.should =~ /\<form/
-  end
-
 end
