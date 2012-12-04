@@ -24,3 +24,5 @@ h2{
 .well{
   padding: 10px 0px;
 }
+text { cursor: pointer; }
+text:hover { opacity: .7 !important; }

@@ -27,7 +27,7 @@ get '/about' do
   wlang :about
 end
 
-get %r{^(/|/clouds/?)$} do
+get %r{^(/|/languages/?)$} do
   scope = {
     language:  nil,
     languages: relvar(:languages)
@@ -35,12 +35,13 @@ get %r{^(/|/clouds/?)$} do
     histogram: relvar(:languages)
                  .rename(language: :word, submission_count: :frequency)
                  .extend(frequency: ->{ frequency/2 })
-                 .to_a(order: [[:frequency, :desc], [:word, :asc]])
+                 .to_a(order: [[:frequency, :desc], [:word, :asc]]),
+    mode:      'language'
   }
-  wlang :clouds, locals: scope
+  wlang :languages, locals: scope
 end
 
-get '/clouds/:language' do |lang|
+get '/languages/:language' do |lang|
   lang = lang.downcase
   scope = {
     language:  lang,
@@ -50,9 +51,10 @@ get '/clouds/:language' do |lang|
     histogram: relvar(:words)
                  .restrict(language: lang)
                  .project([:word, :frequency])
-                 .to_a(order: [[:frequency, :desc], [:word, :asc]])
+                 .to_a(order: [[:frequency, :desc], [:word, :asc]]),
+    mode: 'tag'
   }
-  wlang :clouds, locals: scope
+  wlang :languages, locals: scope
 end
 
 get '/contribute' do

@@ -9,7 +9,7 @@
       <a class="brand" href="/">Programming Language Tag Clouds</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li><a href="/clouds">Clouds</a></li>
+          <li><a href="/languages">Languages</a></li>
           <li><a href="/contribute">Contribute</a></li>
           <li><a href="/about">About</a></li>
         </ul>

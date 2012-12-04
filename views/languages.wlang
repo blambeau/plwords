@@ -5,7 +5,7 @@
         <li class="nav-header">Languages</li>
         *{languages}{
           <li class="switchLang" #{active}{class="active"}>
-            <a href="/clouds/&{language}">${language} (${submission_count})</a>
+            <a href="/languages/&{language}">${language} (${submission_count})</a>
           </li>
         }
       </ul>
@@ -26,7 +26,13 @@
 <script>
   $(document).ready(function(){
     var histogram = +{histogram.to_json};
+    function click_on_language(d){
+      window.location = '/languages/' + encodeURIComponent(d.text);
+    };
+    function click_on_tag(d){
+      alert("Sorry, search by tag is still work in progress!");
+    };
     installTableHistogram(histogram);
-    installCloud(histogram);
+    installCloud(histogram, click_on_+{mode});
   });
 </script>

@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe "GET /clouds/:language" do
+describe "GET /languages/:language" do
 
   it 'work fine with an explicit language' do
-    get '/clouds/java'
+    get '/languages/java'
     last_response.should be_ok
   end
 
   it 'work fine with no explicit language' do
-    get '/clouds/'
+    get '/languages/'
     last_response.should be_ok
 
-    get '/clouds'
+    get '/languages'
     last_response.should be_ok
   end
 

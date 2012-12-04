@@ -2,11 +2,11 @@ var plWordsForm = {
     instrument: function(){
         $('#submitButton').click(plWordsForm.submit);
         $('#noThanksButton, #cloudsButton').click(function(){
-          window.location = "/clouds/" + encodeURIComponent($("#languageInput").attr("value"));
+          window.location = "/languages/" + encodeURIComponent($("#languageInput").attr("value"));
           return false;
         });
         $('#contributeButton').click(function(){
-          window.location = "/";
+          window.location = "/contribute";
           return false;
         });
         return false;

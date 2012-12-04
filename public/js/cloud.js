@@ -16,7 +16,7 @@ function installTableHistogram(histogram){
     $("#histogram").html(output);
 }
 
-function installCloud(histogram){
+function installCloud(histogram, clickFn){
     var fill = d3.scale.category20();
     d3.layout.cloud().size([600, 600])
         .words(histogram)
@@ -44,5 +44,9 @@ function installCloud(histogram){
             return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
           })
           .text(function(d) { return d.text; });
+      if (clickFn) {
+        d3.selectAll("#cloud text")
+          .on("click", clickFn);
+      }
     }
 }
