@@ -5,7 +5,7 @@
         <li class="nav-header">Languages</li>
         *{languages}{
           <li class="switchLang" #{active}{class="active"}>
-            <a href="/languages/&{language}">${language} (${submission_count})</a>
+            <a href="/languages/&{language}">${language}</a>
           </li>
         }
       </ul>

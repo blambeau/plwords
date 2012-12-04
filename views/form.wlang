@@ -4,7 +4,8 @@
 <form id="submissionForm">
   <div class="span7">
     <h2>Cite one programming language</h2>
-    <p>In the menu, in parenthesis is the number of submissions for the language so far.</p>
+    <p>When available, click on the language entry in the menu to automatically fill this input.
+       Otherwise, feel free to submit a new programming language.</p>
     <p>You may submit multiple times for different languages.</p>
     <input type="text" id="languageInput" name="language" class="span6" maxlength="50">
   </div>
