@@ -1,14 +1,3 @@
-function switchLang(lang){
-    if (!lang){ lang = $(".switchLang a").attr('href'); }
-    $(".switchLang").removeClass("active");
-    $("a[href='" + lang + "']").parent().addClass("active");
-    $.get('/cloud/' + encodeURIComponent(lang), function(data){
-        installTableHistogram(data);
-        installCloud(data);
-    });
-    return false;
-}
-
 function installTableHistogram(histogram){
     var template = '\
     <table class="table table-striped table-bordered">\

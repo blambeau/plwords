@@ -34,7 +34,7 @@
           <div id="footer">
             <p class="muted credit">
               &copy; 2012
-              <a target="_blank" href="http://www.revision-zero.org/">Bernard Lambeau</a>, 
+              <a target="_blank" href="http://www.revision-zero.org/">Bernard Lambeau</a>,
               The <a target="_blank" href="http://www.uclouvain.be">University of Louvain</a>. This site is powered by
               <a target="_blank" href="http://www.ruby-lang.org/">ruby</a>,
               <a target="_blank" href="http://www.sinatrarb.com/">sinatra</a>,

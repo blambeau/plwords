@@ -10,4 +10,8 @@ describe "GET /" do
     last_response.body.should =~ /Programming Language Word Clouds/ 
   end
 
+  it 'displays the languages tag cloud' do
+    last_response.body.should =~ /Languages/
+  end
+
 end

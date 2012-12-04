@@ -11,8 +11,6 @@ require 'logger'
 require './config'
 require './model'
 
-HISTOGRAM_ORDERING = [[:frequency, :desc], [:word, :asc]]
-
 class MyHtml < WLang::Html
 
   def at(buf, href, label)
@@ -26,35 +24,51 @@ configure do
   set :recaptcha_private, ENV['RECAPTCHA_PRIVATE']
   set :recaptcha_public,  ENV['RECAPTCHA_PUBLIC']
   set :logger, development? ? Logger.new(STDOUT) : nil
-  set :wlang, {dialect: MyHtml}
+  set :wlang, { dialect: MyHtml }
   alf_rest do |cfg|
     cfg.database  = Sequel.connect(ENV['DATABASE_URL'], loggers: [ settings.logger ].compact)
     cfg.viewpoint = Model
   end
 end
 
-def scope
-  @scope ||= { languages: relvar(:languages).to_a(order: [[:language, :asc]]) }
-end
-
 get '/about' do
   wlang :about
 end
 
-get %r{^/(clouds(/(.+)|/)?)?$} do |_,_,language|
-  wlang :clouds, locals: scope.merge(language: language)
+get %r{^(/|/clouds/?)$} do
+  scope = {
+    language:  nil,
+    languages: relvar(:languages)
+                 .to_a(order: [[:language, :asc]]),
+    histogram: relvar(:languages)
+                 .rename(language: :word, submission_count: :frequency)
+                 .extend(frequency: ->{ frequency/2 })
+                 .to_a(order: [[:frequency, :desc], [:word, :asc]])
+  }
+  wlang :clouds, locals: scope
 end
 
-get '/cloud/:language' do
-  content_type :json
-  relvar(:words)
-    .restrict(language: params[:language].downcase)
-    .project([:word, :frequency])
-    .to_json(order: HISTOGRAM_ORDERING)
+get '/clouds/:language' do |lang|
+  lang = lang.downcase
+  scope = {
+    language:  lang,
+    languages: relvar(:languages)
+                 .extend(active: ->{ language == lang })
+                 .to_a(order: [[:language, :asc]]),
+    histogram: relvar(:words)
+                 .restrict(language: lang)
+                 .project([:word, :frequency])
+                 .to_a(order: [[:frequency, :desc], [:word, :asc]])
+  }
+  wlang :clouds, locals: scope
 end
 
 get '/contribute' do
-  wlang :contribute, locals: scope.merge(recaptcha: settings.recaptcha_public)
+  scope = {
+    languages: relvar(:languages).to_a(order: [[:language, :asc]]),
+    recaptcha: settings.recaptcha_public
+  }
+  wlang :contribute, locals: scope
 end
 
 post '/submissions' do

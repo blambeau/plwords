@@ -8,7 +8,7 @@
     for collecting and presenting tag clouds in particular.</p>
 
     <h2>About the implementation</h2>
-    <p>The website and its backend (about 125 LOC) are written in ruby (of course). In my
+    <p>The website and its backend (about 150 LOC) are written in ruby (of course). In my
        opinion, it is a beautiful example (and an research investigation) of a nice
        partnership between lightweight web frameworks (@{http://www.sinatrarb.com/}{sinatra}),
        logic-less templating languages (@{http://mustache.github.com/}{mustache},
