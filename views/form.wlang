@@ -19,9 +19,9 @@
   <div class="span7 recaptcha">
     <h2>Are you human?</h2>
     <div id="recaptchaInput">
-      <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=+{recaptcha}"></script>
+      <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=+{recaptcha}"></script>
       <noscript>
-         <iframe src="http://www.google.com/recaptcha/api/noscript?k=+{recaptcha}" frameborder="0"></iframe><br>
+         <iframe src="//www.google.com/recaptcha/api/noscript?k=+{recaptcha}" frameborder="0"></iframe><br>
          <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
          <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
       </noscript>
